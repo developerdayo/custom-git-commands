@@ -8,17 +8,37 @@ const env = envBranchNames.envBranchNames;
 const dev = env.dev;
 const stage = env.stage;
 const prod = env.prod;
+const remotes = env.remotes;
 
 function init() {
-    simpleGitPromise.checkout(dev)
+    console.log(
+        chalk.yellow('Fetching...')
+    );
+    simpleGitPromise.fetch(remotes)
     .then(
-        (successCommit) => {
+        (successFetch) => {
             console.log(
-                chalk.yellow(`checked out ${dev}`)
+                chalk.yellow(`Fetch Successful! Creating new feature branch from branch '${prod}'`)
             );
-        }, (failed) => {
-            console.log('failed');
+            simpleGitPromise.checkout(`${prod}`)
+            .then(
+                (successCommit) => {
+                    console.log(
+                        chalk.yellow(`checked out ${prod}`)
+                    );
+                }, (failed) => {
+                    console.log(
+                        chalk.red(`Failed to create new feature branch!`)
+                    );
 
-    });
+            });
+        }, (failed) => {
+            console.log(
+                chalk(
+                    chalk.red(`failed to fetch from ${prod}`)
+                )
+            );
+        }
+    )
 }
 init();

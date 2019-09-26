@@ -1,4 +1,5 @@
 const envBranchNames = {
+    remotes: 'origin',
     dev: 'develop/2019',
     stage: 'stage/1.0.x',
     prod: 'prod'
