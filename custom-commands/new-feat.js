@@ -11,6 +11,7 @@ const prod = env.prod;
 
 function init() {
     simpleGitPromise.checkout(dev)
+    console.log('test');
     .then(
         (successCommit) => {
             console.log(
