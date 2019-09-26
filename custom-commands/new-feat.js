@@ -20,7 +20,7 @@ function init(name) {
     .then(
         (successFetch) => {
             console.log(
-                chalk.yellow(`Fetch Successful! Creating new feature branch from branch '${prod}'`)
+                chalk.yellow(`Fetch Successful! Creating new feature branch from branch '${prod}'...`)
             );
             simpleGitPromise.raw([
                 'checkout',
@@ -31,7 +31,7 @@ function init(name) {
             .then(
                 (successCommit) => {
                     console.log(
-                        chalk.yellow(`checked out feat/${featName}`)
+                        chalk.yellow(`Success! Checked out 'feat/${featName}'.`)
                     );
                 }, (failed) => {
                     console.log(
@@ -47,7 +47,7 @@ function init(name) {
         }, (failed) => {
             console.log(
                 chalk(
-                    chalk.red(`failed to fetch from ${prod}`)
+                    chalk.red(`Failed to fetch from ${prod}.`)
                 )
             );
         }
