@@ -25,7 +25,7 @@ function init(name) {
             simpleGitPromise.raw([
                 'checkout',
                 '-b',
-                `${featName}`,
+                `feature/${featName}`,
                 `${prod}`
             ])
             .then(
