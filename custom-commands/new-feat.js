@@ -8,18 +8,49 @@ const env = envBranchNames.envBranchNames;
 const dev = env.dev;
 const stage = env.stage;
 const prod = env.prod;
+const remotes = env.remotes;
 
-function init() {
-    simpleGitPromise.checkout(dev)
-    console.log('test');
+function init(name) {
+    const featName = process.argv[2];
+    console.log(
+        chalk.yellow('Fetching...')
+    );
+
+    simpleGitPromise.fetch(remotes)
     .then(
-        (successCommit) => {
+        (successFetch) => {
             console.log(
-                chalk.yellow(`checked out ${dev}`)
+                chalk.yellow(`Fetch Successful! Creating new feature branch from branch '${prod}'`)
             );
-        }, (failed) => {
-            console.log('failed');
+            simpleGitPromise.raw([
+                'checkout',
+                '-b',
+                `feature/${featName}`,
+                `${prod}`
+            ])
+            .then(
+                (successCommit) => {
+                    console.log(
+                        chalk.yellow(`checked out feat/${featName}`)
+                    );
+                }, (failed) => {
+                    console.log(
+                        chalk.red(
+                            `Failed to create new feature branch! This happen because:
+                            • you already have a local copy,
+                            • you entered an invalid branch name,
+                            • the branch names specified in env-branch-names.js need to be updated.`
+                        )
+                    );
 
-    });
+            });
+        }, (failed) => {
+            console.log(
+                chalk(
+                    chalk.red(`failed to fetch from ${prod}`)
+                )
+            );
+        }
+    )
 }
 init();
