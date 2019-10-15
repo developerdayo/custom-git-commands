@@ -21,7 +21,7 @@ function init(name) {
     .then(
         (successFetch) => {
             console.log(
-                chalk.yellow(`Fetch Successful! Pulling '${dev}'...`)
+                chalk.yellow(`Fetch Successful! Pulling '${stage}'...`)
             );
             simpleGitPromise.raw([
                 'pull',
@@ -59,7 +59,7 @@ function init(name) {
                                     );
                                 }, (failed) => {
                                     console.log(
-                                        chalk.red(`Failed to merge ${args} into ${dev}`)
+                                        chalk.red(`Failed to merge ${args} into ${stage}`)
                                     );
                                 }
                             )
