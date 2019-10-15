@@ -42,14 +42,15 @@ function init(name) {
                 }, (failed) => {
                     console.log(
                         chalk.red(
-                            `Failed to create new hotfix branch! This happen because:
-                            • you already have a local copy,
-                            • you entered an invalid branch name,
-                            • the branch names specified in env-branch-names.js need to be updated.`
+`Failed to create new hotfix branch! This happen because:
+• you have not cloned ${prod} yet,
+• a branch called hotfix/${args} already exists,
+• you entered an invalid branch name,
+• the branch names specified in env-branch-names.js need to be updated.`
                         )
                     );
-
-            });
+                }
+            )
         }, (failed) => {
             console.log(
                 chalk(
