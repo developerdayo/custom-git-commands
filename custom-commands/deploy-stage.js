@@ -49,7 +49,7 @@ function init(name) {
                             .then(
                                 (successMerge) => {
                                     console.log(
-                                        chalk.yellow(`Successfully deployed ${args} to development branch ${stage}`)
+                                        chalk.yellow(`Successfully merged ${args} to development branch ${stage}`)
                                     );
                                     console.log(
                                         chalk.blueBright(`You are now on ${stage}.`)
