@@ -4,12 +4,12 @@
   "description": "custom git commands with command line interface",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "sarah ferguson",
   "license": "ISC",
   "bin": {
-    "new-feat": "custom-commands/new-feat"
+    "new-feat": "./custom-commands/new-feat.js"
   },
   "dependencies": {
     "@octokit/rest": "^16.30.1",
