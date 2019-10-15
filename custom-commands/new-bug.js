@@ -17,7 +17,7 @@ function init(name) {
     );
     simpleGitPromise.raw([
         'pull',
-        '${remotes}',
+        `${remotes}`,
         `${prod}`,
     ])
     .then(
