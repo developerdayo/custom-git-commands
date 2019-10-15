@@ -9,7 +9,7 @@
   "author": "sarah ferguson",
   "license": "ISC",
   "bin": {
-    "ctek-commands": "./index.js",
+    "ctek-cmds": "./index.js",
     "deploy-dev": "./custom-commands/deploy-dev.js",
     "deploy-stage": "./custom-commands/deploy-dev.js",
     "new-bug": "./custom-commands/new-bug.js",

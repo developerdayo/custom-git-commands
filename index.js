@@ -26,12 +26,12 @@ console.log(
         stage: ${stage}
         dev: ${dev}
 
-        Available Commands:
-        • node new-feat: create a new feat branch. requires a name.
-        • node new-bug: create a new bug branch. requires a name.
-        • node new-hotfix: create a new hotfix branch. requires a name.
-        • node dt-dev: deploys to dev environment. requires branch name.
-        • node dt-stage: deploys to stage environment. requires branch name.
+        Available Commands (ctek-cmds):
+        • new-feat: create a new feat branch. requires a name (ex: new-feat myBranch).
+        • new-bug: create a new bug branch. requires a name (ex: new-bug myBranch).
+        • new-hotfix: create a new hotfix branch. requires a name (ex: new-hotfix myBranch).
+        • deploy-dev: deploys to dev environment. requires branch name (ex: deploy-dev feature/myBranch).
+        • deploy-stage: deploys to stage environment. requires branch name (ex: deploy-stage feature/myBranch).
         `
     )
 );
