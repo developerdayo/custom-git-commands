@@ -1,11 +1,5 @@
 #!/usr/bin/env node
 
-<<<<<<< HEAD
-// prod
-=======
-// develop/2019
->>>>>>> bb000f0507fcefbe91b86ad2c9f520c7fcc22c58
-
 const chalk = require('chalk');
 const simpleGit = require('simple-git')();
 const simpleGitPromise = require('simple-git/promise')();
