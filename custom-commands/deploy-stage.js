@@ -21,7 +21,7 @@ function init(name) {
     .then(
         (successFetch) => {
             console.log(
-                chalk.yellow(`Fetch Successful! Creating new feature branch from branch '${prod}'...`)
+                chalk.yellow(`Fetch Successful! Pulling '${dev}'...`)
             );
             simpleGitPromise.raw([
                 'pull',
