@@ -4,10 +4,16 @@
   "description": "custom git commands with command line interface",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "sarah ferguson",
   "license": "ISC",
+  "bin": {
+    "ctek-commands": "./index.js",
+    "new-bug": "./custom-commands/new-bug.js",
+    "new-hotfix": "./custom-commands/new-hotfix.js",
+    "new-feat": "./custom-commands/new-feat.js"
+  },
   "dependencies": {
     "@octokit/rest": "^16.30.1",
     "chalk": "^2.4.2",

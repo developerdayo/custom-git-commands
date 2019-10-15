@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// prod
+// master
 
 const chalk = require('chalk');
 const simpleGit = require('simple-git')();
@@ -24,23 +24,23 @@ function init(name) {
     .then(
         (successFetch) => {
             console.log(
-                chalk.yellow(`Fetch Successful! Creating new feature branch from branch '${prod}'...`)
+                chalk.yellow(`Fetch Successful! Creating new bug branch from branch '${prod}'...`)
             );
             simpleGitPromise.raw([
                 'checkout',
                 '-b',
-                `feature/${args}`,
+                `bug/${args}`,
                 `${prod}`
             ])
             .then(
                 (successCommit) => {
                     console.log(
-                        chalk.yellow(`Success! Checked out 'feat/${args}'.`)
+                        chalk.yellow(`Success! Checked out 'bug/${args}'.`)
                     );
                 }, (failed) => {
                     console.log(
                         chalk.red(
-                            `Failed to create new feature branch! This happen because:
+                            `Failed to create new bug branch! This happen because:
                             • you already have a local copy,
                             • you entered an invalid branch name,
                             • the branch names specified in env-branch-names.js need to be updated.`
