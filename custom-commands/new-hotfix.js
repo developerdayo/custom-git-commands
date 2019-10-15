@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// master
+// prod
 
 const chalk = require('chalk');
 const simpleGit = require('simple-git')();
