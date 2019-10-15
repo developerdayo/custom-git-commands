@@ -20,12 +20,17 @@ console.log(
 );
 
 console.log(
-    chalk.blue(
+    chalk.bgGreen(
         `
         prod: ${prod}
         stage: ${stage}
         dev: ${dev}
-
+        `
+    )
+)
+console.log(
+    chalk.blue(
+        `
         Available Commands (ctek-cmds):
         • new-feat: create a new feat branch. requires a name (ex: new-feat myBranch).
         • new-bug: create a new bug branch. requires a name (ex: new-bug myBranch).
