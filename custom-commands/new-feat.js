@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// master
+
 const chalk = require('chalk');
 const simpleGit = require('simple-git')();
 const simpleGitPromise = require('simple-git/promise')();
