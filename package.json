@@ -11,7 +11,7 @@
   "bin": {
     "ctek-cmds": "./index.js",
     "deploy-dev": "./custom-commands/deploy-dev.js",
-    "deploy-stage": "./custom-commands/deploy-dev.js",
+    "deploy-stage": "./custom-commands/deploy-stage.js",
     "new-bug": "./custom-commands/new-bug.js",
     "new-hotfix": "./custom-commands/new-hotfix.js",
     "new-feat": "./custom-commands/new-feat.js"
