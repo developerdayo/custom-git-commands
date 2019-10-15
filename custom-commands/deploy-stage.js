@@ -15,71 +15,57 @@ const remotes = env.remotes;
 function init(name) {
     const [,, ...args] = process.argv;
     console.log(
-        chalk.yellow('Fetching remotes...')
+        chalk.yellow(`Pulling '${stage}'...`)
     );
-    simpleGitPromise.fetch(remotes)
+    simpleGitPromise.raw([
+        'pull',
+        'origin',
+        `${stage}`,
+    ])
     .then(
-        (successFetch) => {
+        (successPull) => {
             console.log(
-                chalk.yellow(`Fetch Successful! Pulling '${stage}'...`)
+                chalk.yellow(`Successfully pulled latest from ${stage}. Checking out ${stage}...`)
             );
             simpleGitPromise.raw([
-                'pull',
-                'origin',
+                'checkout',
                 `${stage}`,
             ])
             .then(
-                (successPull) => {
+                (successCheckout) => {
                     console.log(
-                        chalk.yellow(`Successfully pulled latest from ${stage}. Checking out ${stage}...`)
+                        chalk.yellow(`${stage} checked out. Merging ${args} into ${stage}...`)
                     );
                     simpleGitPromise.raw([
-                        'checkout',
-                        `${stage}`,
+                        'merge',
+                        `${args}`,
                     ])
                     .then(
-                        (successCheckout) => {
+                        (successMerge) => {
                             console.log(
-                                chalk.yellow(`${stage} checked out. Merging ${args} into ${stage}...`)
+                                chalk.yellow(`Successfully merged ${args} to development branch ${stage}`)
                             );
-                            simpleGitPromise.raw([
-                                'merge',
-                                `${args}`,
-                            ])
-                            .then(
-                                (successMerge) => {
-                                    console.log(
-                                        chalk.yellow(`Successfully merged ${args} to development branch ${stage}`)
-                                    );
-                                    console.log(
-                                        chalk.blueBright(`You are now on ${stage}.`)
-                                    );
-                                    console.log(
-                                        chalk.magentaBright('Remember to resolve merge conflicts and push to origin.')
-                                    );
-                                }, (failed) => {
-                                    console.log(
-                                        chalk.red(`Failed to merge ${args} into ${stage}`)
-                                    );
-                                }
-                            )
+                            console.log(
+                                chalk.blueBright(`You are now on ${stage}.`)
+                            );
+                            console.log(
+                                chalk.magentaBright('Remember to resolve merge conflicts and push to origin.')
+                            );
                         }, (failed) => {
                             console.log(
-                                chalk.red(`Failed to checkout ${stage}.`)
+                                chalk.red(`Failed to merge ${args} into ${stage}`)
                             );
                         }
                     )
                 }, (failed) => {
                     console.log(
-                        chalk.red(`Failure to pull from ${stage}.`)
+                        chalk.red(`Failed to checkout ${stage}.`)
                     );
                 }
             )
         }, (failed) => {
             console.log(
-                chalk(
-                    chalk.red(`Failed to fetch from origin.`)
-                )
+                chalk.red(`Failure to pull from ${stage}.`)
             );
         }
     )
