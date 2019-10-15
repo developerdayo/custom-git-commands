@@ -15,71 +15,57 @@ const remotes = env.remotes;
 function init(name) {
     const [,, ...args] = process.argv;
     console.log(
-        chalk.yellow('Fetching remotes...')
+        chalk.yellow(`Pulling '${dev}'...`)
     );
-    simpleGitPromise.fetch(remotes)
+    simpleGitPromise.raw([
+        'pull',
+        '${remotes}',
+        `${dev}`,
+    ])
     .then(
-        (successFetch) => {
+        (successPull) => {
             console.log(
-                chalk.yellow(`Fetch Successful! Pulling '${dev}'...`)
+                chalk.yellow(`Successfully pulled latest from ${dev}. Checking out ${dev}...`)
             );
             simpleGitPromise.raw([
-                'pull',
-                'origin',
+                'checkout',
                 `${dev}`,
             ])
             .then(
-                (successPull) => {
+                (successCheckout) => {
                     console.log(
-                        chalk.yellow(`Successfully pulled latest from ${dev}. Checking out ${dev}...`)
+                        chalk.yellow(`${dev} checked out. Merging ${args} into ${dev}...`)
                     );
                     simpleGitPromise.raw([
-                        'checkout',
-                        `${dev}`,
+                        'merge',
+                        `${args}`,
                     ])
                     .then(
-                        (successCheckout) => {
+                        (successMerge) => {
                             console.log(
-                                chalk.yellow(`${dev} checked out. Merging ${args} into ${dev}...`)
+                                chalk.yellow(`Successfully merged ${args} to development branch ${dev}`)
                             );
-                            simpleGitPromise.raw([
-                                'merge',
-                                `${args}`,
-                            ])
-                            .then(
-                                (successMerge) => {
-                                    console.log(
-                                        chalk.yellow(`Successfully merged ${args} to development branch ${dev}`)
-                                    );
-                                    console.log(
-                                        chalk.blueBright(`You are now on ${dev}.`)
-                                    );
-                                    console.log(
-                                        chalk.magentaBright('Remember to resolve merge conflicts and push to origin.')
-                                    );
-                                }, (failed) => {
-                                    console.log(
-                                        chalk.red(`Failed to merge ${args} into ${dev}`)
-                                    );
-                                }
-                            )
+                            console.log(
+                                chalk.blueBright(`You are now on ${dev}.`)
+                            );
+                            console.log(
+                                chalk.magentaBright('Remember to resolve merge conflicts and push to origin.')
+                            );
                         }, (failed) => {
                             console.log(
-                                chalk.red(`Failed to checkout ${dev}.`)
+                                chalk.red(`Failed to merge ${args} into ${dev}`)
                             );
                         }
                     )
                 }, (failed) => {
                     console.log(
-                        chalk.red(`Failure to pull from ${dev}.`)
+                        chalk.red(`Failed to checkout ${dev}.`)
                     );
                 }
             )
         }, (failed) => {
             console.log(
-                chalk(
-                    chalk.red(`Failed to fetch from origin.`)
-                )
+                chalk.red(`Failure to pull from ${dev}.`)
             );
         }
     )

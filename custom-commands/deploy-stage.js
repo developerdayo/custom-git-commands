@@ -7,9 +7,7 @@ const simpleGitPromise = require('simple-git/promise')();
 const envBranchNames = require('./env-branch-names');
 const env = envBranchNames.envBranchNames;
 
-const dev = env.dev;
 const stage = env.stage;
-const prod = env.prod;
 const remotes = env.remotes;
 
 function init(name) {
@@ -19,7 +17,7 @@ function init(name) {
     );
     simpleGitPromise.raw([
         'pull',
-        'origin',
+        '${remotes}',
         `${stage}`,
     ])
     .then(

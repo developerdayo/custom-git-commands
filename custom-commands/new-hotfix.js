@@ -7,18 +7,19 @@ const simpleGitPromise = require('simple-git/promise')();
 const envBranchNames = require('./env-branch-names');
 const env = envBranchNames.envBranchNames;
 
-const dev = env.dev;
-const stage = env.stage;
 const prod = env.prod;
 const remotes = env.remotes;
 
 function init(name) {
     const [,, ...args] = process.argv;
     console.log(
-        chalk.yellow('Fetching remotes...')
+        chalk.yellow(`Pulling latest from '${prod}'...`)
     );
-
-    simpleGitPromise.fetch(remotes)
+    simpleGitPromise.raw([
+        'pull',
+        '${remotes}',
+        `${prod}`,
+    ])
     .then(
         (successFetch) => {
             console.log(
@@ -52,7 +53,7 @@ function init(name) {
         }, (failed) => {
             console.log(
                 chalk(
-                    chalk.red(`Failed to fetch from ${prod}.`)
+                    chalk.red(`Failed to get latest from ${prod}.`)
                 )
             );
         }
