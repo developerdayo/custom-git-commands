@@ -51,6 +51,9 @@ function init(name) {
                                     console.log(
                                         chalk.yellow(`Successfully deployed ${args} to development branch ${dev}`)
                                     );
+                                    console.log(
+                                        chalk.magentaBright('Resolve merge conflicts and push up')
+                                    )
                                 }, (failed) => {
                                     console.log(
                                         chalk.red(`Failed to merge ${args} into ${dev}`)
