@@ -8,6 +8,12 @@
   },
   "author": "sarah ferguson",
   "license": "ISC",
+  "bin": {
+    "ctek-commands": "./index.js",
+    "new-bug": "./custom-commands/new-bug.js",
+    "new-hotfix": "./custom-commands/new-hotfix.js",
+    "new-feat": "./custom-commands/new-feat.js"
+  },
   "dependencies": {
     "@octokit/rest": "^16.30.1",
     "chalk": "^2.4.2",
