@@ -10,8 +10,8 @@
   "license": "ISC",
   "bin": {
     "ctek-commands": "./index.js",
-    "dt-dev": "./custom-commands/deploy-dev.js",
-    "dt-stage": "./custom-commands/deploy-dev.js",
+    "deploy-dev": "./custom-commands/deploy-dev.js",
+    "deploy-stage": "./custom-commands/deploy-dev.js",
     "new-bug": "./custom-commands/new-bug.js",
     "new-hotfix": "./custom-commands/new-hotfix.js",
     "new-feat": "./custom-commands/new-feat.js"
