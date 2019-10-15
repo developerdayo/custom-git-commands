@@ -15,7 +15,7 @@ const remotes = env.remotes;
 function init(name) {
     const [,, ...args] = process.argv;
     console.log(
-        chalk.yellow('Fetching...')
+        chalk.yellow('Fetching remotes...')
     );
 
     simpleGitPromise.fetch(remotes)
@@ -34,6 +34,9 @@ function init(name) {
                 (successCommit) => {
                     console.log(
                         chalk.yellow(`Success! Checked out 'hotfix/${args}'.`)
+                    );
+                    console.log(
+                        chalk.blueBright(`You are now on hotfix/${args}.`)
                     );
                 }, (failed) => {
                     console.log(

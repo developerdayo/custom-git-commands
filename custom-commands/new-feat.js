@@ -15,7 +15,7 @@ const remotes = env.remotes;
 function init(name) {
     const [,, ...args] = process.argv;
     console.log(
-        chalk.yellow('Fetching...')
+        chalk.yellow('Fetching remotes...')
     );
 
     simpleGitPromise.fetch(remotes)
@@ -33,7 +33,10 @@ function init(name) {
             .then(
                 (successCommit) => {
                     console.log(
-                        chalk.yellow(`Success! Checked out 'feat/${args}'.`)
+                        chalk.yellow(`Success! Checked out 'feature/${args}'.`)
+                    );
+                    console.log(
+                        chalk.blueBright(`You are now on feature/${args}.`)
                     );
                 }, (failed) => {
                     console.log(

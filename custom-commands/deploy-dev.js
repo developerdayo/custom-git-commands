@@ -15,7 +15,7 @@ const remotes = env.remotes;
 function init(name) {
     const [,, ...args] = process.argv;
     console.log(
-        chalk.yellow('Fetching...')
+        chalk.yellow('Fetching remotes...')
     );
     simpleGitPromise.fetch(remotes)
     .then(
@@ -52,8 +52,11 @@ function init(name) {
                                         chalk.yellow(`Successfully deployed ${args} to development branch ${dev}`)
                                     );
                                     console.log(
-                                        chalk.magentaBright('Resolve merge conflicts and push up')
-                                    )
+                                        chalk.blueBright(`You are now on ${dev}.`)
+                                    );
+                                    console.log(
+                                        chalk.magentaBright('Remember to resolve merge conflicts and push to origin.')
+                                    );
                                 }, (failed) => {
                                     console.log(
                                         chalk.red(`Failed to merge ${args} into ${dev}`)
