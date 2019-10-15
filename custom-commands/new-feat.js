@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const chalk = require('chalk');
 const simpleGit = require('simple-git')();
 const simpleGitPromise = require('simple-git/promise')();
@@ -11,7 +13,7 @@ const prod = env.prod;
 const remotes = env.remotes;
 
 function init(name) {
-    const featName = process.argv[2];
+    const [,, ...featName] = process.argv;
     console.log(
         chalk.yellow('Fetching...')
     );
